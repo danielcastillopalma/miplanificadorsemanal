@@ -1,0 +1,7 @@
+{
+  "name": "miplanificadorsemanal",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
