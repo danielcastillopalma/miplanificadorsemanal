@@ -1,0 +1,8 @@
+<ion-list >
+  <ion-item *ngFor="let tarea of tareas" >
+    <div *ngIf="tarea.status;else nocompletada"><ion-checkbox (ionChange)="tareaCompletada(tarea.idTarea)"checked><label *ngIf="!tarea.status;else tareaFalse">{{tarea.label}}</label></ion-checkbox></div>
+    <ng-template #tareaFalse> <del>{{tarea.label}}</del></ng-template>
+    <ng-template #nocompletada> <ion-checkbox (ionChange)="tareaCompletada(tarea.idTarea)"><label *ngIf="!tarea.status;else tareaFalse">{{tarea.label}}</label></ion-checkbox></ng-template>
+  </ion-item>  
+  <ion-button (click)="openModal()"></ion-button>
+</ion-list>

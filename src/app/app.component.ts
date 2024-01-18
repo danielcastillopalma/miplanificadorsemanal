@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Platform } from '@ionic/angular';
+import { SqliteService } from './services/dbservice.service';
+import { Device } from '@capacitor/device';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,23 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  public isWeb:boolean;
+  public load: boolean;
+  constructor(
+    private platform: Platform,
+    private sqlite:SqliteService,
+  ) {
+    this.isWeb=false;
+    this.load=false;
+    this.initApp()
+  }
+  initApp(){
+    this.platform.ready().then(async()=>{
+      const info= await Device.getInfo();
+      this.isWeb=info.platform=='web';
+      this.sqlite.crearBD();
+      this.load=true;
+      
+    })
+  }
 }

@@ -1,0 +1,33 @@
+{
+    "database": "tareas",
+    "version": 1,
+    "encrypted": false,
+    "mode": "full",
+    "tables": [
+        {
+            "name": "tareas",
+            "schema": [
+                {
+                    "column": "idTarea",
+                    "value": "TEXT NOT NULL PRIMARY KEY"
+                },
+                {
+                    "column": "diaTarea",
+                    "value": "INTEGER NOT NULL"
+                },
+                {
+                    "column": "ICON",
+                    "value": "TEXT NOT NULL"
+                },
+                {
+                    "column": "label",
+                    "value": "TEXT NOT NULL"
+                },
+                {
+                    "column": "status",
+                    "value": "INTEGER NOT NULL"
+                }
+            ]
+        }
+    ]
+}

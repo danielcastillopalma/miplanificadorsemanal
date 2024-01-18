@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Mi Planificador Semanal
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-tabs>
+      <ion-tab-bar slot="top" (ionChange)="segmentChanged($event)">
+        <ion-tab-button tab="lunes">
+          L
+        </ion-tab-button>
+        <ion-tab-button tab="martes">
+          M
+        </ion-tab-button>
+        <ion-tab-button tab="miercoles">
+          M
+        </ion-tab-button>
+        <ion-tab-button tab="jueves">
+          J
+        </ion-tab-button>
+        <ion-tab-button tab="viernes">
+          V
+        </ion-tab-button>
+        <ion-tab-button tab="sabado">
+          S
+        </ion-tab-button>
+        <ion-tab-button tab="domingo">
+          D
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-content>
+</ion-content>

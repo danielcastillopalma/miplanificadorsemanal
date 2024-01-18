@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Welcome</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Guardar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="Nombre de la tarea" [(ngModel)]="tarea.label"
+      placeholder="Nombre de la tarea"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-select aria-label="fruit" placeholder="Dia de la semana">
+      <ion-select-option value="Lunes">Lunes</ion-select-option>
+      <ion-select-option value="Martes">Martes</ion-select-option>
+      <ion-select-option value="Miercoles">Miercoles</ion-select-option>
+      <ion-select-option value="Jueves">Jueves</ion-select-option>
+      <ion-select-option value="Viernes">Viernes</ion-select-option>
+      <ion-select-option value="Sábado">Sábado</ion-select-option>
+      <ion-select-option value="Domingo">Domingo</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list>
+    <ion-item>
+      <ion-select aria-label="fruit" placeholder="emoji">
+        <ion-select-option value="apples">Apples</ion-select-option>
+        <ion-select-option value="oranges">Oranges</ion-select-option>
+        <ion-select-option value="bananas">Bananas</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-item> <label for="">E: {{funciona}}</label></ion-item>
+
+
+</ion-content>
