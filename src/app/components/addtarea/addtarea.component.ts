@@ -9,14 +9,16 @@ import { SqliteService } from 'src/app/services/dbservice.service';
   styleUrls: ['./addtarea.component.scss'],
 })
 export class AddtareaComponent implements OnInit {
-  public tarea: Tarea;
-  public tareas: Tarea[];
-
-  funciona: string;
+  tarea: any = [{
+    label: "",
+    diaTarea: "",
+    icon:""
+  },]
+ 
 
   constructor(private modalCtrl: ModalController, private sqlite: SqliteService
   ) {
-    this.funciona = "no cargado"
+   
   }
 
 

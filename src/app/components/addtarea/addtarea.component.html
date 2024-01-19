@@ -16,27 +16,34 @@
   </ion-item>
 
   <ion-item>
-    <ion-select aria-label="fruit" placeholder="Dia de la semana">
+    <ion-select aria-label="diasemana" placeholder="Dia de la semana" [(ngModel)]="tarea.diaTarea">
       <ion-select-option value="Lunes">Lunes</ion-select-option>
       <ion-select-option value="Martes">Martes</ion-select-option>
       <ion-select-option value="Miercoles">Miercoles</ion-select-option>
       <ion-select-option value="Jueves">Jueves</ion-select-option>
       <ion-select-option value="Viernes">Viernes</ion-select-option>
-      <ion-select-option value="Sábado">Sábado</ion-select-option>
+      <ion-select-option value="Sabado">Sábado</ion-select-option>
       <ion-select-option value="Domingo">Domingo</ion-select-option>
     </ion-select>
   </ion-item>
 
   <ion-list>
     <ion-item>
-      <ion-select aria-label="fruit" placeholder="emoji">
-        <ion-select-option value="apples">Apples</ion-select-option>
-        <ion-select-option value="oranges">Oranges</ion-select-option>
-        <ion-select-option value="bananas">Bananas</ion-select-option>
+      <ion-select aria-label="emoji" placeholder="Emoji" [(ngModel)]="tarea.icon">
+        <ion-select-option value="🛀🏿">🛀🏿</ion-select-option>
+        <ion-select-option value="🧹">🧹</ion-select-option>
+        <ion-select-option value="🥗">🥗</ion-select-option>
+        <ion-select-option value="🗑️">🗑️</ion-select-option>
+        <ion-select-option value="📚">📚</ion-select-option>
+        <ion-select-option value="👫">👫</ion-select-option>
+        <ion-select-option value="🚿">🚿</ion-select-option>
+        <ion-select-option value="🍓">🍓</ion-select-option>
+        <ion-select-option value="👕">👕</ion-select-option>
+        <ion-select-option value="👗">👗</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>
-  <ion-item> <label for="">E: {{funciona}}</label></ion-item>
+  
 
 
 </ion-content>

@@ -35,6 +35,7 @@ export class ComlunesComponent implements OnInit {
       }
     });
 
+
   }
   constructor(private modalCtrl: ModalController, private sqlite: SqliteService) {
 
@@ -50,21 +51,21 @@ export class ComlunesComponent implements OnInit {
 
     const { data, role } = await modal.onWillDismiss();
     if (role === 'confirm') {
-      this.newidTarea = data.idTarea;
+
       this.newdiaTarea = data.diaTarea;
       this.newicon = data.icon;
       this.newlabel = data.label;
-      this.newstatus = data.status;
+      this.newstatus = 0;
 
       console.log(data);
       this.guardar();
     }
   }
   guardar() {
-    this.sqlite.addTarea(this.newidTarea, this.newdiaTarea, this.newicon, this.newlabel, this.newstatus);
-    this.sqlite.presentToast("Nota Agregada");
+    this.sqlite.addTarea(this.newdiaTarea, this.newicon, this.newlabel, this.newstatus);
 
   }
+
   tareaCompletada(tarea: string) {
     for (let tar in this.tareas) {
       if (this.tareas[tar].idTarea == tarea) {

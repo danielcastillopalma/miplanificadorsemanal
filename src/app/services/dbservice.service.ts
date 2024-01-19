@@ -9,12 +9,14 @@ import { Tarea } from '../classes/tarea';
 })
 export class SqliteService {
   public database!: SQLiteObject;
-  tblTareas: string = "CREATE TABLE IF NOT EXISTS tareas(idTarea TEXT PRIMARY KEY, diaTarea INTEGER NOT NULL, ICON TEXT NOT NULL, label TEXT NOT NULL, status INTEGER NOT NULL);";
+  tblTareas: string = "CREATE TABLE IF NOT EXISTS tarea(idTarea INTEGER PRIMARY KEY AUTOINCREMENT, diaTarea INTEGER NOT NULL, ICON TEXT NOT NULL, label TEXT NOT NULL, status INTEGER NOT NULL);";
   listaTareas = new BehaviorSubject<Tarea[]>([]);
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
   constructor(private sqlite: SQLite, private platform: Platform, public toastController: ToastController) {
 
-    this.crearBD();
+    this.platform.ready().then(() => {
+      this.crearBD();
+    });
 
 
   }
@@ -44,39 +46,48 @@ export class SqliteService {
     }
   }
 
-  cargarNotas() {
+  async cargarNotas() {
+    console.log("aqui entra en cargar notas 1")
     let items: Tarea[] = [];
-    this.database.executeSql('SELECT * FROM nota')
-      .then(res => {
-        if (res.rows.length > 0) {
-          for (let i = 0; i < res.rows.length; i++) {
+    console.log("aqui entra en cargar notas 2")
+    await this.database.executeSql('SELECT * FROM tarea')
 
+      .then(res => {
+
+        console.log("aqui antes del if")
+        if (res.rows.length > 0) {
+
+          for (let i = 0; i < res.rows.length; i++) {
+            console.log("aqui entra en cargar notas for")
             items.push({
-              idTarea: res.rows.item(i).id,
+              idTarea: res.rows.item(i).idTarea,
               icon: res.rows.item(i).icon,
-              diaTarea: res.rows.item(i).dia,
+              diaTarea: res.rows.item(i).diaTarea,
               label: res.rows.item(i).label,
-              status:res.rows.item(i).status,
+              status: res.rows.item(i).status,
             });
           }
         }
-      });
+      })
+      .catch(err => { console.log(err) });
     this.listaTareas.next(items);
   }
-  async addTarea(id: any, day: any, icon: any,label:any,status:any) {
-    let data = [id, day, icon,label,status];
-    await this.database.executeSql('INSERT INTO tareas(idTarea, diaTarea, ICON, label, status)VALUES(?,?,?,?,?)', data);
+
+  async addTarea(day: any, icon: any, label: any, status: any) {
+    let data = [day, icon, label, status];
+    await this.database.executeSql('INSERT INTO tarea(diaTarea, ICON, label, status)VALUES(?,?,?,?)', data);
+    this.presentToast("Tarea agregada")
     this.cargarNotas();
   }
   /*** Método que actualiza el título y/o el texto filtrando por el id*/
   async updateNota(id: any, title: any, content: any) {
     let data = [title, content, id];
-    await this.database.executeSql('UPDATE nota SET title=?, content=?WHERE id=?', data);
+    await this.database.executeSql('UPDATE tarea SET title=?, content=?WHERE id=?', data);
     this.cargarNotas();
   }
   /*** Método que elimina un registro por id de la tabla noticia*/
   async deleteNota(id: any) {
-    await this.database.executeSql('DELETE FROM nota WHERE id=?', [id]);
+    await this.database.executeSql('DELETE FROM tarea WHERE id=?', [id]);
     this.cargarNotas();
   }
   dbState() {
